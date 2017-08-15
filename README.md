@@ -33,12 +33,11 @@ Create a Proxy of the service on the client end
     }
 
     @Bean
-    public GrpcInvokerServiceExporter userServiceServer() {
-        GrpcInvokerServiceExporter grpcInvokerServiceExporter = new GrpcInvokerServiceExporter();
-        grpcInvokerServiceExporter.setServiceInterface(UserService.class);
-        grpcInvokerServiceExporter.setService(userService());
-        grpcInvokerServiceExporter.setPort(8888);
-        return grpcInvokerServiceExporter;
+    public GrpcInvokerProxyFactoryBean grpcInvokerProxyFactoryBean() {
+        GrpcInvokerProxyFactoryBean grpcInvokerProxyFactoryBean = new GrpcInvokerProxyFactoryBean();
+        grpcInvokerProxyFactoryBean.setServiceUrl("localhost:8888");
+        grpcInvokerProxyFactoryBean.setServiceInterface(UserService.class);
+        return grpcInvokerProxyFactoryBean;
     }
 
 Look in the tests to find the complete example.
